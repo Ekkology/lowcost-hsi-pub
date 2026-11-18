@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# entornos virtuales
+.venv/
+venv/
+env/
+
+# artefactos de empaquetado
+build/
+dist/
+*.egg-info/
+
+# archivos de datos
+*.csv
+
+# carpetas de pruebas
+test_roya_1/
+venv_ui/
+
+# archivos temporales
+*.log
+
+# datos de escaneos y capturas
+scans/
+captures/
+captures2/
+
+# tests pasados
+TESTS_PASADOS/
+
+# macOS
+.DS_Store
+._.DS_Store
+._*
+.fuse_hidden*
+.vnv

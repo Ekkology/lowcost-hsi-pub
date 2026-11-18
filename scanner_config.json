@@ -1,0 +1,13 @@
+{
+  "rpi_url": "http://raspberrypi.local:8000",
+  "cnc_port": "/dev/ttyUSB0",
+  "x_start": 140.0,
+  "y_start": 127.0,
+  "z_focus": -60.0,
+  "cols": 141,
+  "rows": 61,
+  "step_mm": 1.0,
+  "exposition": 30.0,
+  "accum": 1,
+  "lamp_power_pct": 99.0
+}

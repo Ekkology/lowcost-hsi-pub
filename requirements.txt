@@ -1,0 +1,16 @@
+# Dependencias del pipeline de procesamiento espectral y la reconstrucción.
+# Instalar con:  pip install -r requirements.txt
+#
+# NOTA: el pipeline (preprocessing.py / spectral_core.py) está escrito en
+# numpy puro A PROPÓSITO. No se usan scipy ni scikit-learn: Savitzky-Golay,
+# Bartlett/KMO y PCA están implementados a mano. No agregar esas dependencias
+# sin una buena razón.
+
+# --- Núcleo (obligatorio) ---
+numpy>=2.0
+
+# --- Visualización / reconstrucción (opcional pero usado por los CLIs) ---
+matplotlib>=3.9   # gráfica de PCA (preprocessing.py --plot) y espectros
+pillow>=11        # guardado de imágenes en la reconstrucción
+
+# La UI (run_ui.py) necesita además 'nicegui'; ver el extra [ui] en pyproject.toml.

@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lowcost-hsi"
+version = "0.1.0"
+description = "Imagen hiperespectral de bajo costo con el espectrómetro Hamamatsu C12880MA: captura por grilla, reconstrucción y preprocesamiento espectral (corrección blanco/negro, Savitzky-Golay, PCA)."
+requires-python = ">=3.9"
+
+# El pipeline está en numpy puro a propósito (sin scipy ni scikit-learn).
+dependencies = [
+    "numpy>=2.0",
+]
+
+[project.optional-dependencies]
+# Gráficas de PCA/espectros y guardado de imágenes en la reconstrucción.
+viz = [
+    "matplotlib>=3.9",
+    "pillow>=11",
+]
+# Interfaz web (run_ui.py): panel NiceGUI que consume la API REST de
+# rpi_server.py. requests para el cliente HTTP; plotly para el espectro en vivo.
+ui = [
+    "nicegui",
+    "requests>=2.31",
+    "plotly>=5",
+    "pillow>=11",
+]
+# Backend REST (rpi_server.py). Se instala en la Raspberry Pi (o en localhost
+# para pruebas sin hardware). Multiplataforma: no incluye libs de GPIO.
+server = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pyserial",
+    "matplotlib>=3.9",
+    "pillow>=11",
+]
+# Hardware del espectrómetro en la Raspberry Pi: GPIO + ADC ADS1115 por I2C.
+# SOLO instala en una Raspberry Pi (estas ruedas no existen para macOS/Windows).
+rpi = [
+    "RPi.GPIO",
+    "adafruit-blinka",
+    "adafruit-circuitpython-ads1x15",
+    "gpiozero",
+]
+
+[tool.setuptools]
+# Módulos sueltos en la raíz que forman parte de la librería.
+py-modules = ["spectral_core", "preprocessing"]
+
+[tool.setuptools.packages.find]
+# Paquetes con __init__.py; se excluye lo que no es librería instalable.
+include = ["ui*", "Sensor*"]
+exclude = ["tests*", "legacy*", "docs*"]
